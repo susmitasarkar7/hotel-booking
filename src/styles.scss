@@ -1,1 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+$theme-colors: (
+  "color1": #EB387D,
+);
+
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~bootstrap/scss/bootstrap";
+// Plus imports for other components in your app.
+
 /* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  outline: none !important;
+}
+
+body {
+  line-height: normal;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #aaaaaa; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #70ebe0; 
+}
+
+a {
+  transition: ease 0.3s;
+}
+button {
+  transition: ease 0.3s;
+}
+
+.cp {
+  cursor: pointer;
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
+
+// DYNAMIC WIDTH
+@mixin DYNAMIC_WIDTH_PERCENTAGE {
+  @for $i from 1 through 100 {
+    .width-#{$i} {
+      width: #{$i + "%"};
+    }
+  }
+}
+
+@include DYNAMIC_WIDTH_PERCENTAGE;
+
+@mixin DYNAMIC_WIDTH_PEXELS {
+  @for $i from 1 through 2000 {
+    .pxwidth-#{$i} {
+      width: #{$i + "px"};
+    }
+  }
+}
+
+@include DYNAMIC_WIDTH_PEXELS;
+
