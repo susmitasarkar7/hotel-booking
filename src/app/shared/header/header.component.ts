@@ -6,10 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+    menuBackDrop: any;
+    mainMenuWrap: any;
+  
+    constructor() { }
+  
+    ngOnInit(): void {
+    }
+  
+    openMenu() {
+      this.menuBackDrop = document.querySelector('.menuBackDrop');
+      this.menuBackDrop.classList.add('active');
+      this.mainMenuWrap = document.querySelector('.mainMenuWrap')
+      this.mainMenuWrap.classList.add('active');
+    }
+    closeMenu() {
+      this.menuBackDrop = document.querySelector('.menuBackDrop')
+      this.menuBackDrop.classList.remove('active');
+      this.mainMenuWrap = document.querySelector('.mainMenuWrap')
+      this.mainMenuWrap.classList.remove('active');
+    }
+  
   }
-
-}

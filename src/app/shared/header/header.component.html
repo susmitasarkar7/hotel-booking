@@ -1,1 +1,60 @@
-<p>header works!</p>
+<header>
+    <div class="container pt-2">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-lg-3 order-lg-0 order-1">
+          <img src="./assets/images/logo.jpg" alt="logo" class="logo" routerLink="/">
+        </div>
+        <div class="col-lg-9 order-lg-1 order-0">
+          <div class="row mx-0 justify-content-lg-end justify-content-center mb-3">
+            <div class="haeder-button cursor-pointer" routerLink="/login" routerLinkActive="active">
+              <figure><span class="material-icons">
+                person
+                </span></figure>
+              <p class="font-open-sans">Login</p>
+            </div>
+            <div class="haeder-button cursor-pointer" routerLink="/register" routerLinkActive="active">
+              <figure><span class="material-icons">
+                person_add
+                </span></figure>
+              <p class="font-open-sans">Register</p>
+            </div>
+          </div>
+          <div class="row mx-0 justify-content-end">
+            <div class="menuBackDrop d-lg-none" (click)="closeMenu()">
+  
+            </div>
+            <div class="mainMenuWrap" (click)="closeMenu()">
+                <div class="d-flex d-lg-none align-items-center border-bottom py-2 mb-3 ">
+                    <div class="col-auto">
+                        <a routerLink='/' class="weblogo">
+                            <img draggable="false" src="assets/images/logo.jpg" width="130" alt="logo">
+                        </a>
+                    </div>
+                    <div class="">
+                        <button class="btn shadow-none text-secondary p-0" ><i
+                            class="material-icons align-middle">close</i></button>
+                    </div>
+                </div>
+                <ul class="list-unstyled m-0 d-lg-flex">
+                    <li class="">
+                      <a class="text-dark font-open-sans  cursor-pointer active" routerLink="/home" routerLinkActive="active">Home</a>
+                    </li>
+                    <li class="">
+                      <a class="text-dark font-open-sans" routerLink="/about" routerLinkActive="active">About</a>
+                    </li>
+                    <li class="">
+                      <a class="text-dark font-open-sans cursor-pointer" routerLink="/contact" routerLinkActive="active">Contact</a>
+                    </li>
+                </ul>
+  
+            </div>
+            <div class="d-lg-none cs-position">
+                <button (click)="openMenu()" class="btn shadow-none text-secondary "><i
+                        class="material-icons align-middle">notes</i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  

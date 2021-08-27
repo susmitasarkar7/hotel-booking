@@ -1,0 +1,142 @@
+header {
+    background-color: rgba(255, 234, 163, 0.849);
+    .logo {
+        height: 100px;
+        width: auto;
+        object-fit: cover;
+    }
+    
+    .haeder-button {
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        figure {
+            width: 32px;
+            height: 32px;
+            background: var(--white);
+            border: 2px solid var(--color1);
+            box-sizing: border-box;
+            border-radius: 50%;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        p {
+            font-style: normal;
+            font-weight: 600;
+            font-size: .95rem;
+            line-height: 18px;
+            margin-left: 15px;
+            margin-bottom: 0;
+        }
+    
+        &:hover {
+            figure {
+                background: var(--color1);
+                img {
+                    filter: invert(1);
+                }
+            }
+        } 
+    }
+    .haeder-button.active {
+        cursor: pointer;
+        figure {
+            background: var(--color1);
+            img {
+                filter: invert(1);
+            }
+        }
+    } 
+
+    a {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        margin-left: 35px;
+    }
+        
+    a.active {
+        color: var(--color1) !important;
+    }
+}
+
+
+@media (max-width: 991px) {
+    .cs-position {
+        position: absolute;
+        right: 11px;
+        top: 74px;
+    }
+    .weblogo {
+        img {
+            height: 50px;
+        }
+    }
+    .menuBackDrop {
+        background-color: rgba(#000000, 0.5);
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 0%;
+        height: 100vh;
+        z-index: 99998;
+        transition: ease 0.3s;
+        &.active {
+            width: 100%;
+        }
+    }
+    .mainMenuWrap {
+        position: fixed;
+        left: -270px;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        width: 250px;
+        background-color: #ffffff;
+        z-index: 99999;
+        box-shadow: 0 3px 15px rgba(#000000, 0.2);
+        transition: ease 0.3s;
+        &.active {
+            left: 0;
+        }
+    }
+
+    header {
+        .logo {
+            img {
+                height: 70px;
+            }
+        }
+        ul {
+            li {
+                a {
+                    display: block;
+                    padding: 14px 10px;
+                }
+            }
+        }
+
+        .login {
+            padding: 9px 34px;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    header {
+        .logo {
+            img {
+                height: 50px;
+            }
+        }
+
+        .login {
+            padding: 7px 24px;
+            font-size: 12px;
+        }
+    }
+}
