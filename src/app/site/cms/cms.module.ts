@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { CmsComponent } from './cms.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MaterialModule } from 'src/app/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { MaterialModule } from 'src/app/material.module';
     CommonModule,
     CmsRoutingModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CmsModule { }
