@@ -1,48 +1,77 @@
 <div class="banner">
     <img src="./assets/images/banner.jpg" alt="banner">
 
-  <div class="filters">
-    <div class="row w-100 align-items-center">
-      <div class="col-lg-4">
-        <mat-form-field class="example-form-field" appearance="outline">
-            <mat-label>Your stay</mat-label>
-            <mat-date-range-input
-              [formGroup]="campaignOne"
-              [rangePicker]="campaignOnePicker"
-              [comparisonStart]="campaignOne.value.start"
-              [comparisonEnd]="campaignOne.value.end">
-              <input matStartDate placeholder="Start date" formControlName="start">
-              <input matEndDate placeholder="End date" formControlName="end">
-            </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
-            <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+  <form [formGroup]="searchHotelForm">
+    <div class="filters">
+      <div class="row w-100 align-items-center justify-content-center">
+        <div class="col-auto">
+          <mat-form-field class="example-form-field" appearance="outline">
+              <mat-label>Your stay</mat-label>
+              <mat-date-range-input
+                [formGroup]="campaignOne"
+                [rangePicker]="campaignOnePicker"
+                [comparisonStart]="campaignOne.value.start"
+                [comparisonEnd]="campaignOne.value.end">
+                <input matStartDate placeholder="Start date" formControlName="start">
+                <input matEndDate placeholder="End date" formControlName="end">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+              <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+            </mat-form-field>
+          </div>
+        <div class="col-auto">
+          <mat-form-field appearance="outline" class="cs-width">
+            <mat-label>Guests</mat-label>
+            <mat-select value="1" formControlName="guests">
+              <mat-option value="1">1</mat-option>
+              <mat-option value="2">2</mat-option>
+              <mat-option value="3">3</mat-option>
+              <mat-option value="4">4</mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
-      <div class="col-lg-3">
-        <mat-form-field appearance="outline">
-          <mat-label>Guests</mat-label>
-          <mat-select value="option1">
-            <mat-option value="option1">1</mat-option>
-            <mat-option value="option2">2</mat-option>
-            <mat-option value="option3">3</mat-option>
-            <mat-option value="option4">4</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-lg-3">
-        <mat-form-field appearance="outline">
-          <mat-label>Location</mat-label>
-          <mat-select value="option1">
-            <mat-option value="option1">Kolkata</mat-option>
-            <mat-option value="option2">Mumbai</mat-option>
-            <mat-option value="option3">Chennai</mat-option>
-            <mat-option value="option4">Delhi</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-lg-2">
-        <button mat-raised-button color="accent">Check Availability</button>
-      </div>
-    </div>      
+        <div class="col-auto">
+          <mat-form-field appearance="outline" class="cs-width">
+            <mat-label>Rooms</mat-label>
+            <mat-select value="1" formControlName="rooms">
+              <mat-option value="1">1</mat-option>
+              <mat-option value="2">2</mat-option>
+              <mat-option value="3">3</mat-option>
+              <mat-option value="4">4</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-auto">
+          <mat-form-field appearance="outline">
+            <mat-label>Location</mat-label>
+            <mat-select value="Thailand" formControlName="location">
+              <mat-option value="Thailand">Thailand</mat-option>
+              <mat-option value="Chile">Chile</mat-option>
+              <mat-option value="Mexico">Mexico</mat-option>
+              <mat-option value="Finland">Finland</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-2">
+          <button mat-raised-button color="accent" (click)="searchHotels()">Check Availability</button>
+        </div>
+      </div>      
+    </div>
+  </form>
+</div>
+
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-3 mb-3" *ngFor="let hotel of hotelList">
+      <mat-card class="example-card">
+        <img mat-card-image src="./assets/images/{{hotel.image}}" alt="{{hotel.name}}">
+        <mat-card-content>
+          <h5>{{hotel.name}}</h5>
+          <p>{{hotel.location}}</p>
+        </mat-card-content>
+      </mat-card> 
+    </div>
+    <h4 class="text-dark" *ngIf="hotelList.length == 0">Sorry! No Hotels Available.</h4>
+    <button class="btn btn-outline-dark mx-auto" (click)="viewAll()">View All</button>
   </div>
 </div>

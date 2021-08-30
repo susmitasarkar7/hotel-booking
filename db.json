@@ -1,0 +1,83 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "test@mail.com",
+      "password": "12345678"
+    }
+  ],
+  "hotels": [
+    {
+      "id": 1,
+      "name": "TreeHouse Villas",
+      "location": "Thailand",
+      "image": "treehousevillas.jpg",
+      "rooms": 2,
+      "guests": 3,
+      "per_day_price_for_a_person": 10
+    },
+    {
+      "id": 2,
+      "name": "Explora Patagonia",
+      "location": "Chile",
+      "image": "explorepatagonia.jpg",
+      "rooms": 2,
+      "guests": 3,
+      "per_day_price_for_a_person": 14
+    },
+    {
+      "id": 3,
+      "name": "Grand Miramar",
+      "location": "Mexico",
+      "image": "grandmiramarallluxurysuitesandresidences.jpg",
+      "rooms": 2,
+      "guests": 3,
+      "per_day_price_for_a_person": 10
+    },
+    {
+      "id": 4,
+      "name": "Kakslauttanen Arctic Resort",
+      "location": "Finland",
+      "image": "kakslauttanenarcticresort.jpg",
+      "rooms": 2,
+      "guests": 3,
+      "per_day_price_for_a_person": 20
+    },
+    {
+      "id": 5,
+      "name": "TreeHouse Villas 1",
+      "location": "Thailand",
+      "image": "treehousevillas.jpg",
+      "rooms": 3,
+      "guests": 4,
+      "per_day_price_for_a_person": 12
+    },
+    {
+      "id": 6,
+      "name": "Explora Patagonia 2",
+      "location": "Chile",
+      "image": "explorepatagonia.jpg",
+      "rooms": 3,
+      "guests": 4,
+      "per_day_price_for_a_person": 10.5
+    },
+    {
+      "id": 7,
+      "name": "Grand Miramar 3",
+      "location": "Mexico",
+      "image": "grandmiramarallluxurysuitesandresidences.jpg",
+      "rooms": 3,
+      "guests": 4,
+      "per_day_price_for_a_person": 13
+    },
+    {
+      "id": 8,
+      "name": "Kakslauttanen Arctic Resort 4",
+      "location": "Finland",
+      "image": "kakslauttanenarcticresort.jpg",
+      "rooms": 3,
+      "guests": 4,
+      "per_day_price_for_a_person": 22
+    }
+  ]
+}

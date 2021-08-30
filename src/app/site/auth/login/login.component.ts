@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup | any;
 
   constructor(
+    private api: ApiService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -47,21 +49,19 @@ export class LoginComponent implements OnInit {
         this.loginForm.markAllAsTouched();
       }
 
-    // this.apiservice.post('user', data).subscribe((res: any) => {
-        // console.log('Resp--->', res);
-        // if (res.status === 200) {
-    //       if (res.success) {
-    //         this.loginForm.reset();
-    //         this.router.navigate(['/home']);
-    //       } else {
-    //       }
-    //     }, (err: any) => {
-    //       console.log(err);
-    //     });
-    // // } else {
-    //   this.loginForm.markAllAsTouched();
+      //   this.api.post('users', data).subscribe((res: any) => {
+      //     console.log(res);
+      //     if (res.status === 200) {
+      //         localStorage.setItem('currentUser', JSON.stringify(data));
+      //       this.loginForm.reset();
+      //       this.router.navigate(['/home']);
+      //     } else {
+      //       this.loginForm.markAllAsTouched();
+      //     }
+      //   }, (err: any) => {
+      //     console.log(err);
+      //   });   
+      }
     }
-  }    
 
-
-}
+  }
