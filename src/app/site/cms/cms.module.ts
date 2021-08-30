@@ -7,12 +7,15 @@ import { CmsComponent } from './cms.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CmsComponent
+    CmsComponent,
+    HotelDetailComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class CmsModule { }

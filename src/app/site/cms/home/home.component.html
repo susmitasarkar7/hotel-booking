@@ -63,7 +63,7 @@
 <div class="container">
   <div class="row my-5">
     <div class="col-md-3 mb-3" *ngFor="let hotel of hotelList">
-      <mat-card class="example-card">
+      <mat-card class="example-card cp" routerLink="/hotelDetail" (click)="hotelDetail(hotel.id, hotel.per_day_price_for_a_person)">
         <img mat-card-image src="./assets/images/{{hotel.image}}" alt="{{hotel.name}}">
         <mat-card-content>
           <h5>{{hotel.name}}</h5>
@@ -71,7 +71,7 @@
         </mat-card-content>
       </mat-card> 
     </div>
-    <h4 class="text-dark" *ngIf="hotelList.length == 0">Sorry! No Hotels Available.</h4>
+    <h4 class="text-dark w-100" *ngIf="hotelList?.length == 0">Sorry! No Hotels Available.</h4>
     <button class="btn btn-outline-dark mx-auto" (click)="viewAll()">View All</button>
   </div>
 </div>

@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 my-3">
+            <img class="img-fluid" src="./assets/images/{{hotelData?.image}}" alt="{{hotelData?.name}}">
+        </div>
+        <div class="col-md-6 my-3">
+          <h5>{{hotelData?.name}}</h5>
+          <p>{{hotelData?.location}}</p>
+          <br>
+          <p class="text-muted">{{hotelData?.desc}}</p>
+          <table class="w-100">
+              <tbody>
+                  <tr>
+                      <td><h4><i>Total Cost</i></h4></td>
+                      <td align="right"><h2>{{hotel_price}}</h2></td>
+                  </tr>
+              </tbody>
+          </table>
+          <button mat-raised-button color="accent" (click)="bookHotel()">Book Now!</button>
+        </div>
+    </div>
+</div>

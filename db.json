@@ -14,6 +14,7 @@
       "image": "treehousevillas.jpg",
       "rooms": 2,
       "guests": 3,
+      "desc": "Lorem In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
       "per_day_price_for_a_person": 10
     },
     {
@@ -23,6 +24,7 @@
       "image": "explorepatagonia.jpg",
       "rooms": 2,
       "guests": 3,
+      "desc": "Lorem In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
       "per_day_price_for_a_person": 14
     },
     {
@@ -32,6 +34,7 @@
       "image": "grandmiramarallluxurysuitesandresidences.jpg",
       "rooms": 2,
       "guests": 3,
+      "desc": "Lorem In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
       "per_day_price_for_a_person": 10
     },
     {
@@ -41,6 +44,7 @@
       "image": "kakslauttanenarcticresort.jpg",
       "rooms": 2,
       "guests": 3,
+      "desc": "Lorem In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
       "per_day_price_for_a_person": 20
     },
     {
@@ -50,6 +54,7 @@
       "image": "treehousevillas.jpg",
       "rooms": 3,
       "guests": 4,
+      "desc": "Lorem In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
       "per_day_price_for_a_person": 12
     },
     {
@@ -59,6 +64,7 @@
       "image": "explorepatagonia.jpg",
       "rooms": 3,
       "guests": 4,
+      "desc": "Lorem In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
       "per_day_price_for_a_person": 10.5
     },
     {
@@ -68,6 +74,7 @@
       "image": "grandmiramarallluxurysuitesandresidences.jpg",
       "rooms": 3,
       "guests": 4,
+      "desc": "Lorem In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
       "per_day_price_for_a_person": 13
     },
     {
@@ -77,6 +84,7 @@
       "image": "kakslauttanenarcticresort.jpg",
       "rooms": 3,
       "guests": 4,
+      "desc": "Lorem In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
       "per_day_price_for_a_person": 22
     }
   ]

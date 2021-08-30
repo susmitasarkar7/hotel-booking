@@ -2,6 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-home',
@@ -22,19 +23,15 @@ export class HomeComponent implements OnInit {
       start: new FormControl(new Date(year, month, 16)),
       end: new FormControl(new Date(year, month, 20))
     });
-  } 
-
-  ngOnInit(): void {
-    this.getContent();
-    this.formInit(); 
-  }
-  
-  formInit() {
     this.searchHotelForm = new FormGroup({
       guests: new FormControl('', [Validators.required]),
       location: new FormControl('', [Validators.required]),
       rooms: new FormControl('', [Validators.required]),
     });
+  } 
+
+  ngOnInit(): void {
+    this.getContent();
   }
 
   searchHotels() {
@@ -48,6 +45,7 @@ export class HomeComponent implements OnInit {
     }, (err: any) => {
       console.log(err);
     });
+
   }
 
   getContent(): void {
@@ -73,6 +71,15 @@ export class HomeComponent implements OnInit {
     }, (err: any) => {
       console.log(err);
     });
+  }
+
+  hotelDetail(id: any, price: any) {
+    localStorage.setItem('hotel_id', id);
+    
+    var a = moment(this.campaignOne.value.start, "YYYY-MM-DD");
+    var b = moment(this.campaignOne.value.end, "YYYY-MM-DD");
+    let hotel_price: any = Math.round(moment.duration(b.diff(a)).asDays() * price);
+    localStorage.setItem('hotel_price', '$'+hotel_price);
   }
 
 }
