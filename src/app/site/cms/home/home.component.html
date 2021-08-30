@@ -72,6 +72,8 @@
       </mat-card> 
     </div>
     <h4 class="text-dark w-100" *ngIf="hotelList?.length == 0">Sorry! No Hotels Available.</h4>
-    <button class="btn btn-outline-dark mx-auto" (click)="viewAll()">View All</button>
+    <div class="w-100 d-flex justify-content-center">
+      <button class="btn btn-outline-dark" (click)="viewAll()">View All</button>
+    </div>
   </div>
 </div>

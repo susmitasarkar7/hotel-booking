@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
   searchHotels() {
-    let params = new HttpParams().set("location", this.searchHotelForm.value.location).set("rooms", this.searchHotelForm.value.rooms).set("guests", this.searchHotelForm.value.rooms);
+    let params = new HttpParams().set("location", this.searchHotelForm.value.location).set("rooms", this.searchHotelForm.value.rooms).set("guests", this.searchHotelForm.value.guests);
     this.api.get(`hotels`, params).subscribe((res: any) => {
       if (res != []) {
         this.hotelList = res;
