@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import * as moment from 'moment';
+import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit {
   hotelList: [] | any;
   searchHotelForm: FormGroup | any;
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService,
+    private hotel: HotelService) {
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -31,7 +33,8 @@ export class HomeComponent implements OnInit {
   } 
 
   ngOnInit(): void {
-    this.getContent();
+    // this.getContent();
+    console.log(this.hotel.getContent());
   }
 
   searchHotels() {
@@ -73,12 +76,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  hotelDetail(id: any, price: any) {
+  hotelDetail(id: any, price: any, guests: any) {
     localStorage.setItem('hotel_id', id);
     
     var a = moment(this.campaignOne.value.start, "YYYY-MM-DD");
     var b = moment(this.campaignOne.value.end, "YYYY-MM-DD");
-    let hotel_price: any = Math.round(moment.duration(b.diff(a)).asDays() * price);
+    let hotel_price: any = Math.round(moment.duration(b.diff(a)).asDays() * price * guests);
     localStorage.setItem('hotel_price', '$'+hotel_price);
   }
 
