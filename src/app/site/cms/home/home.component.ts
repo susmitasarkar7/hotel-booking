@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import * as moment from 'moment';
-import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +14,7 @@ export class HomeComponent implements OnInit {
   hotelList: [] | any;
   searchHotelForm: FormGroup | any;
 
-  constructor(private api: ApiService,
-    private hotel: HotelService) {
+  constructor(private api: ApiService) {
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -33,8 +31,7 @@ export class HomeComponent implements OnInit {
   } 
 
   ngOnInit(): void {
-    // this.getContent();
-    console.log(this.hotel.getContent());
+    this.getContent();
   }
 
   searchHotels() {
