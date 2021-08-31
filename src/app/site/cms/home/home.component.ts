@@ -1,9 +1,9 @@
-import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,8 @@ export class HomeComponent implements OnInit {
   hotelList: [] | any;
   searchHotelForm: FormGroup | any;
 
-  constructor(private api: ApiService, public router: Router) {
+  constructor(private api: ApiService, public router: Router,
+    private toastr: ToastrService) {
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -37,21 +38,35 @@ export class HomeComponent implements OnInit {
   }
 
   searchHotels() {
-    let params = new HttpParams().set("location", this.searchHotelForm.value.location).set("rooms", this.searchHotelForm.value.rooms).set("guests", this.searchHotelForm.value.guests);
-    this.api.get(`hotels`, params).subscribe((res: any) => {
-      if (res != []) {
-        this.hotelList = res;
-      } else {
-        console.warn(res.message, 'warning');
-      }
-    }, (err: any) => {
-      console.log(err);
-    });
+    const params: any = {
+      location: this.searchHotelForm.value.location,
+      rooms: this.searchHotelForm.value.rooms,
+      guests: this.searchHotelForm.value.guests
+    }
+    
+    
+    if (!Object.values(params).some(x => x == null || x == '')) {
+      this.api.get(`hotels`, params).subscribe((res: any) => {
+        if (res.length!=0) {
+          this.hotelList = res;
+        } else {
+          this.toastr.warning('Sorry! No Hotels Available', 'Information!');
+        }
+      }, (err: any) => {
+        console.log(err);
+      });
+    } else {
+      this.toastr.error('Enter all details', 'Error!');
+    }    
 
   }
 
   getContent(): void {
-    let paginate = new HttpParams().set("_page", 1).set("_limit", 4)
+    const paginate: any = {
+      _page: 1,
+      _limit: 4
+    }
+
     this.api.get(`hotels`, paginate).subscribe((res: any) => {
       if (res != []) {
         this.hotelList = res;
