@@ -1,4 +1,3 @@
-import { EventService } from './event.service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
@@ -16,19 +15,16 @@ export class ApiService {
   private BASE_API_URL = environment.BASE_API_URL;
   httpOptions: { headers: HttpHeaders; } | any;
   constructor(
-    private http: HttpClient,
-    private event: EventService,
-    // private storage: StorageService
+    private http: HttpClient
   ) {
 
-    this.event.isLogin.subscribe((isLogin: boolean) => {
-      if (isLogin) {
-        const TOKEN = 'token';
-        this.setHeader(TOKEN);
-      } else {
-        this.setHeader('false');
-      }
-    });
+    if (localStorage.getItem('auth_token') === 'true') {
+      const TOKEN = 'token';
+      this.setHeader(TOKEN);
+    } else {
+      this.setHeader('false');
+    }
+    
   }
 
   async setHeader(TOKEN: string): Promise<any> {
@@ -65,5 +61,13 @@ export class ApiService {
 
   private formatErrors(error: any): any {
     return throwError(error.error);
+  }
+
+  isAuthenticated() {
+    if(localStorage.getItem('auth_token') === 'true') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

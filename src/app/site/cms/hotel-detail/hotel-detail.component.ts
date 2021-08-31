@@ -1,8 +1,9 @@
-import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-hotel-detail',
@@ -12,22 +13,43 @@ import { ApiService } from 'src/app/services/api.service';
 export class HotelDetailComponent implements OnInit {
   hotelData: any;
   hotel_price: any;
+  pageData: any;
+  campaignOne: FormGroup;
+  hotelList: [] | any;
+  searchHotelForm: FormGroup | any;
 
   constructor(private api: ApiService,
-    public router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    public router: Router) {
+
+    this.route.queryParams
+      .subscribe(params => {
+        this.pageData = params;
+      }
+    );   
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date( Number(moment(this.pageData.start_date).format('YYYY')),  Number(moment(this.pageData.start_date).format('MM')), Number(moment(this.pageData.start_date).format('DD')))),
+      end: new FormControl(new Date( Number(moment(this.pageData.end_date).format('YYYY')),  Number(moment(this.pageData.end_date).format('MM')),  Number(moment(this.pageData.end_date).format('DD'))))
+    });
+
+    this.searchHotelForm = new FormGroup({
+      guests: new FormControl(this.pageData.guests, [Validators.required]),
+      rooms: new FormControl(this.pageData.rooms, [Validators.required]),
+    });
+  }
 
   ngOnInit(): void {
-    this.hotel_price = localStorage.getItem('hotel_price');
     this.getContent();
   }
 
   getContent(): void {
-    let hotel_id: any = localStorage.getItem('hotel_id');
-    let paginate = new HttpParams().set("id", hotel_id)
-    this.api.get(`hotels`, paginate).subscribe((res: any) => {
+    const data: any = {id : this.pageData.id}
+    this.api.get(`hotels`, data).subscribe((res: any) => {
       if (res != '') {
         this.hotelData = res[0];
+        this.hotel_price = '$' + Math.round(this.pageData.stay * this.pageData.guests * this.pageData.rooms * this.hotelData.per_day_price_for_a_person);
       } else {
         console.warn(res.message, 'warning');
       }
@@ -37,8 +59,43 @@ export class HotelDetailComponent implements OnInit {
   }
 
   bookHotel() {
-    console.log('Hotel Booked successfully');
-    this.router.navigate(['/home']);
-    this.toastr.success('Hotel Booked successfully', 'Success!');
+    this.calculatePrice();
+
+    if(this.api.isAuthenticated()) {
+      const data: any = {
+        "name": this.hotelData.name,
+        "location": this.hotelData.location,
+        "image": this.hotelData.image,
+        "rooms": this.searchHotelForm.value.rooms,
+        "guests": this.searchHotelForm.value.guests,
+        "desc": this.hotelData.desc,
+        "total_price": this.hotel_price,
+        "stay_start": this.campaignOne.value.start,
+        "stay_end": this.campaignOne.value.end,
+      }
+      if (!Object.values(data).some(x => x == null || x == '')) {
+        this.api.post('bookings', data).subscribe((res: any) => {
+          if (res != {}) {
+            this.toastr.success('Hotel Booked successfully', 'Success!');
+          } else {
+            this.toastr.error('Something went wrong', 'Error!');
+          }
+        }, (err: any) => {
+          console.log(err);
+        }); 
+      } else {
+        this.toastr.error('Enter all details', 'Error!');
+      }    
+    } else {
+      this.router.navigate(['/login'])
+    }
+  }
+
+  calculatePrice() {
+    var a = moment(this.campaignOne.value.start, "YYYY-MM-DD");
+    var b = moment(this.campaignOne.value.end, "YYYY-MM-DD");
+    let stay: any = moment.duration(b.diff(a)).asDays();  
+
+    this.hotel_price = '$' + Math.round(stay * this.searchHotelForm.value.guests * this.searchHotelForm.value.rooms * this.hotelData.per_day_price_for_a_person);
   }
 }

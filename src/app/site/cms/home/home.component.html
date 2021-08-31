@@ -22,24 +22,13 @@
         <div class="col-auto">
           <mat-form-field appearance="outline" class="cs-width">
             <mat-label>Guests</mat-label>
-            <mat-select value="1" formControlName="guests">
-              <mat-option value="1">1</mat-option>
-              <mat-option value="2">2</mat-option>
-              <mat-option value="3">3</mat-option>
-              <mat-option value="4">4</mat-option>
-            </mat-select>
-            <!-- <input type="number" matInput formControlName="guests" min="1" max="10"> -->
+            <input type="number" matInput formControlName="guests" min="1" max="10">
           </mat-form-field>
         </div>
         <div class="col-auto">
           <mat-form-field appearance="outline" class="cs-width">
             <mat-label>Rooms</mat-label>
-            <mat-select value="1" formControlName="rooms">
-              <mat-option value="1">1</mat-option>
-              <mat-option value="2">2</mat-option>
-              <mat-option value="3">3</mat-option>
-              <mat-option value="4">4</mat-option>
-            </mat-select>
+            <input type="number" matInput formControlName="rooms" min="1" max="10">
           </mat-form-field>
         </div>
         <div class="col-auto">
@@ -64,8 +53,8 @@
 <div class="container">
   <div class="row my-5">
     <div class="col-md-3 mb-3" *ngFor="let hotel of hotelList">
-      <mat-card class="example-card cp" routerLink="/hotelDetail" 
-      (click)="hotelDetail(hotel.id, hotel.per_day_price_for_a_person, hotel.guests)">
+      <mat-card class="example-card cp" 
+      (click)="hotelDetail(hotel.id)">
         <img mat-card-image src="./assets/images/{{hotel.image}}" alt="{{hotel.name}}">
         <mat-card-content>
           <h5>{{hotel.name}}</h5>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
   hotelList: [] | any;
   searchHotelForm: FormGroup | any;
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, public router: Router) {
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -23,10 +24,11 @@ export class HomeComponent implements OnInit {
       start: new FormControl(new Date(year, month, 16)),
       end: new FormControl(new Date(year, month, 20))
     });
+
     this.searchHotelForm = new FormGroup({
-      guests: new FormControl('', [Validators.required]),
+      guests: new FormControl('1', [Validators.required]),
       location: new FormControl('', [Validators.required]),
-      rooms: new FormControl('', [Validators.required]),
+      rooms: new FormControl('1', [Validators.required]),
     });
   } 
 
@@ -73,13 +75,22 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  hotelDetail(id: any, price: any, guests: any) {
-    localStorage.setItem('hotel_id', id);
-    
+  hotelDetail(id: any) {
     var a = moment(this.campaignOne.value.start, "YYYY-MM-DD");
     var b = moment(this.campaignOne.value.end, "YYYY-MM-DD");
-    let hotel_price: any = Math.round(moment.duration(b.diff(a)).asDays() * price * guests);
-    localStorage.setItem('hotel_price', '$'+hotel_price);
+    let stay: any = moment.duration(b.diff(a)).asDays();  
+    
+    this.router.navigate(['/hotelDetail'], 
+      {queryParams: 
+        { 
+          id, 
+          stay, 
+          guests: this.searchHotelForm.value.guests, 
+          rooms: this.searchHotelForm.value.rooms,
+          start_date : this.campaignOne.value.start,
+          end_date : this.campaignOne.value.end,
+        }
+      })
   }
 
 }

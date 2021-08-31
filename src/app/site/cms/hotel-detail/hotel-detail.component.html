@@ -8,15 +8,51 @@
           <p>{{hotelData?.location}}</p>
           <br>
           <p class="text-muted">{{hotelData?.desc}}</p>
-          <table class="w-100">
-              <tbody>
-                  <tr>
-                      <td><h4><i>Total Cost</i></h4></td>
-                      <td align="right"><h2>{{hotel_price}}</h2></td>
-                  </tr>
-              </tbody>
-          </table>
-          <button mat-raised-button color="accent" (click)="bookHotel()">Book Now!</button>
+          <form [formGroup]="searchHotelForm">
+            <table class="w-100">
+                <tbody>
+                    <tr>
+                        <td><h5>Rooms</h5></td>
+                        <td>
+                            <mat-form-field class="example-form-field" appearance="outline">
+                                <input type="number" matInput formControlName="rooms" min="1" max="10" (change)="calculatePrice()">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h5>Guests</h5></td>
+                        <td>
+                            <mat-form-field class="example-form-field" appearance="outline">
+                                <input type="number" matInput formControlName="guests" min="1" max="10" (change)="calculatePrice()">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h5>Staying for</h5></td>
+                        <td>
+                            <mat-form-field class="example-form-field" appearance="outline">
+                                <mat-date-range-input
+                                        (change)="calculatePrice()"
+                                        [formGroup]="campaignOne"
+                                        [rangePicker]="campaignOnePicker"
+                                        [comparisonStart]="campaignOne.value.start"
+                                        [comparisonEnd]="campaignOne.value.end">
+                                        <input matStartDate placeholder="Start date" formControlName="start">
+                                        <input matEndDate placeholder="End date" formControlName="end">
+                                        </mat-date-range-input>
+                                        <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                                        <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h4><i>Total Cost</i></h4></td>
+                        <td><h2>{{hotel_price}}</h2></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button mat-raised-button color="accent" (click)="bookHotel()" class="mt-3">Book Now!</button>
+          </form>
         </div>
     </div>
 </div>

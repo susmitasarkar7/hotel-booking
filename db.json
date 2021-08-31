@@ -87,5 +87,19 @@
       "desc": "Lorem In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
       "per_day_price_for_a_person": 22
     }
+  ],
+  "bookings": [
+    {
+      "id": 1,
+      "name": "TreeHouse Villas",
+      "location": "Thailand",
+      "image": "treehousevillas.jpg",
+      "rooms": 2,
+      "guests": 3,
+      "stay_start": "2021-12-02",
+      "stay_end": "2021-12-10",
+      "desc": "Lorem In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
+      "total_price": 10
+    }
   ]
 }
