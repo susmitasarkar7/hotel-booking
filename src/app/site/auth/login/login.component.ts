@@ -9,10 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginData: any = {
-    email: "test@mail.com",
-    password: "12345678"
-  }
+  loginData: any;
   loginForm: FormGroup | any;
 
   constructor(
@@ -21,6 +18,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formInit(); 
+    this.api.get('users').subscribe((res: any) => {
+      if (res !== {}) {
+        this.loginData = res;
+      } else {
+        this.loginForm.markAllAsTouched();
+      }
+    }, (err: any) => {
+      console.log(err);
+    });   
   }
   
   formInit() {
@@ -31,8 +37,6 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
-    console.log(this.loginForm.value);
-    // return;
     if (this.loginForm.valid) {
 
       const data = {
@@ -40,27 +44,18 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.controls.password.value,
       };
 
-      if (JSON.stringify(data) === JSON.stringify(this.loginData)) {
-        this.loginForm.reset();
-        this.router.navigate(['/home']);
-        localStorage.setItem('auth_token', 'true');
-        localStorage.setItem('currentUser', JSON.stringify(data));
-      } else {
-        this.loginForm.markAllAsTouched();
-      }
+      this.loginData.find((e: any) => {
+          if (e.email === data.email && e.password === data.password) {
+            this.loginForm.reset();
+            this.router.navigate(['/dashboard']);
+            localStorage.setItem('auth_token', 'true');
+            localStorage.setItem('currentUser', JSON.stringify(data));
+          } else {
+            this.loginForm.markAllAsTouched();
+          }
+      });
+      
 
-      //   this.api.post('users', data).subscribe((res: any) => {
-      //     console.log(res);
-      //     if (res.status === 200) {
-      //         localStorage.setItem('currentUser', JSON.stringify(data));
-      //       this.loginForm.reset();
-      //       this.router.navigate(['/home']);
-      //     } else {
-      //       this.loginForm.markAllAsTouched();
-      //     }
-      //   }, (err: any) => {
-      //     console.log(err);
-      //   });   
       }
     }
 

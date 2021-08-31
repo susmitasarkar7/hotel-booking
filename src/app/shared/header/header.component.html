@@ -6,17 +6,29 @@
         </div>
         <div class="col-lg-9 order-lg-1 order-0">
           <div class="row mx-0 justify-content-lg-end justify-content-center mb-3">
-            <div class="haeder-button cursor-pointer" routerLink="/login" routerLinkActive="active">
+            <div class="haeder-button cursor-pointer" *ngIf="!isAuthenticated" routerLink="/login" routerLinkActive="active">
               <figure><span class="material-icons">
                 person
                 </span></figure>
               <p class="font-open-sans">Login</p>
             </div>
-            <div class="haeder-button cursor-pointer" routerLink="/register" routerLinkActive="active">
+            <div class="haeder-button cursor-pointer" *ngIf="isAuthenticated" routerLink="/dashboard" routerLinkActive="active">
+              <figure><span class="material-icons">
+                space_dashboard
+                </span></figure>
+              <p class="font-open-sans">Dashboard</p>
+            </div>
+            <div class="haeder-button cursor-pointer" *ngIf="!isAuthenticated" routerLink="/register" routerLinkActive="active">
               <figure><span class="material-icons">
                 person_add
                 </span></figure>
               <p class="font-open-sans">Register</p>
+            </div>
+            <div class="haeder-button cursor-pointer" *ngIf="isAuthenticated" (click)="logout()">
+              <figure><span class="material-icons">
+                person_remove
+                </span></figure>
+              <p class="font-open-sans">Logout</p>
             </div>
           </div>
           <div class="row mx-0 justify-content-end">
