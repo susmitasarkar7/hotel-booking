@@ -1,14 +1,12 @@
 {
   "users": [
     {
-      "id": 1,
-      "email": "test@mail.com",
-      "password": "12345678"
-    },
-    {
-      "email": "test123@mail.com",
+      "email": "john@mail.com",
       "password": "12345678",
-      "id": 2
+      "firstName": "John",
+      "lastName": "dasgupta",
+      "address": "ssdfdsfsd",
+      "id": 1
     }
   ],
   "hotels": [
@@ -95,16 +93,16 @@
   ],
   "bookings": [
     {
-      "id": 1,
-      "name": "TreeHouse Villas",
-      "location": "Thailand",
-      "image": "treehousevillas.jpg",
-      "rooms": 2,
-      "guests": 3,
-      "stay_start": "2021-12-02",
-      "stay_end": "2021-12-10",
+      "name": "Explora Patagonia",
+      "location": "Chile",
+      "image": "explorepatagonia.jpg",
+      "rooms": "1",
+      "guests": 2,
       "desc": "Lorem In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
-      "total_price": 10
+      "total_price": "$112",
+      "stay_start": "2021-11-15T18:30:00.000Z",
+      "stay_end": "2021-11-19T18:30:00.000Z",
+      "id": 1
     }
   ]
 }

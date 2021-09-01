@@ -1,1 +1,61 @@
-<p>dashboard works!</p>
+<div class="container">
+    <div class="row">
+        <ng-container *ngFor="let hotel of hotelData">
+            <div class="col-md-4 my-3">
+                <img class="img-fluid" src="./assets/images/{{hotel?.image}}" alt="{{hotel?.name}}">
+            </div>
+            <div class="col-md-8 my-3">
+            <h5>{{hotel?.name}}</h5>
+            <p>{{hotel?.location}}</p>
+            <br>
+            <p class="text-muted">{{hotel?.desc}}</p>
+            <form [formGroup]="searchHotelForm">
+                <table class="w-100">
+                    <tbody>
+                        <tr>
+                            <td><h5>Rooms</h5></td>
+                            <td>
+                                <mat-form-field class="example-form-field" appearance="outline" (click)="calculatePrice(hotel?.id)">
+                                    <input type="number" matInput formControlName="rooms" min="1" max="10" >
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h5>Guests</h5></td>
+                            <td>
+                                <mat-form-field class="example-form-field" appearance="outline" (click)="calculatePrice(hotel?.id)">
+                                    <input type="number" matInput formControlName="guests" min="1" max="10" >
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h5>Staying for</h5></td>
+                            <td>
+                                <mat-form-field class="example-form-field" appearance="outline">
+                                    <mat-date-range-input
+                                            (click)="calculatePrice(hotel?.id)"
+                                            [formGroup]="campaignOne"
+                                            [rangePicker]="campaignOnePicker"
+                                            [comparisonStart]="campaignOne.value.start"
+                                            [comparisonEnd]="campaignOne.value.end">
+                                            <input matStartDate placeholder="Start date" formControlName="start">
+                                            <input matEndDate placeholder="End date" formControlName="end">
+                                            </mat-date-range-input>
+                                            <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                                            <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h4><i>Total Cost</i></h4></td>
+                            <td><h2>{{hotel?.total_price}}</h2></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button mat-raised-button color="accent" class="my-3 mr-3" (click)="updateBooking(hotel?.id)">Update</button>
+                <button mat-raised-button color="warn" class="my-3 mr-3" (click)="deleteBooking(hotel?.id)">Delete</button>
+            </form>
+            </div>
+        </ng-container>
+    </div>
+</div>

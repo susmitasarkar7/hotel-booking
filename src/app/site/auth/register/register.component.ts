@@ -30,8 +30,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public register() {
-    console.log(this.registerForm.value);
-    // return;
+    
     if (this.registerForm.valid) {
 
       const data = {
@@ -44,9 +43,11 @@ export class RegisterComponent implements OnInit {
 
         this.api.post('users', data).subscribe((res: any) => {
           console.log(res);
-          if (res.status === 200) {
+          if (res?.length !== 0) {
             this.registerForm.reset();
-            this.router.navigate(['/login']);
+            this.router.navigate(['/dashboard']);
+            localStorage.setItem('auth_token', 'true');
+            localStorage.setItem('currentUser', JSON.stringify(res));
           } else {
             this.registerForm.markAllAsTouched();
           }

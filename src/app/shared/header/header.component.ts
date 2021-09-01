@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
       localStorage.removeItem('auth_token');
       this.router.navigate(['/home']);
       this.toastr.success('Logout Success!', 'Success');
-      window.location.reload();
+      location.reload();
     }
   
   }

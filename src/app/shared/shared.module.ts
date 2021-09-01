@@ -5,11 +5,13 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 const COMPONENTS = [
   HeaderComponent, 
-  FooterComponent
+  FooterComponent,
+  SidebarComponent
 ];
 
 @NgModule({

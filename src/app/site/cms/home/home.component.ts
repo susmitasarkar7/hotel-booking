@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
       guests: this.searchHotelForm.value.guests
     }
     
-    
+
     if (!Object.values(params).some(x => x == null || x == '')) {
       this.api.get(`hotels`, params).subscribe((res: any) => {
         if (res.length!=0) {

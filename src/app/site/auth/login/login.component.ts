@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
             this.loginForm.reset();
             this.router.navigate(['/dashboard']);
             localStorage.setItem('auth_token', 'true');
-            localStorage.setItem('currentUser', JSON.stringify(data));
+            localStorage.setItem('currentUser', JSON.stringify(e));
           } else {
             this.loginForm.markAllAsTouched();
           }

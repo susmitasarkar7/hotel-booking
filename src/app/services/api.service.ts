@@ -59,6 +59,16 @@ export class ApiService {
       .pipe(catchError(this.formatErrors));
   }
 
+  put(path: any, body: object = {}, reportProgress = false): Observable<any> {
+    return this.http.put(`${this.BASE_API_URL}${path}`, body, { headers: this.httpOptions.headers, reportProgress, })
+      .pipe(catchError(this.formatErrors));
+  }
+
+  delete(path: any): Observable<any> {
+    return this.http.delete(`${this.BASE_API_URL}${path}`, { headers: this.httpOptions.headers})
+      .pipe(catchError(this.formatErrors));
+  }
+
   private formatErrors(error: any): any {
     return throwError(error.error);
   }

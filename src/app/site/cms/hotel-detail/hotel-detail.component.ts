@@ -60,7 +60,7 @@ export class HotelDetailComponent implements OnInit {
 
   bookHotel() {
     this.calculatePrice();
-
+    
     if(this.api.isAuthenticated()) {
       const data: any = {
         "name": this.hotelData.name,
@@ -70,8 +70,9 @@ export class HotelDetailComponent implements OnInit {
         "guests": this.searchHotelForm.value.guests,
         "desc": this.hotelData.desc,
         "total_price": this.hotel_price,
-        "stay_start": this.campaignOne.value.start,
-        "stay_end": this.campaignOne.value.end,
+        "stay_start": moment(this.campaignOne.value.start).format('YYYY-MM-DD'),
+        "stay_end": moment(this.campaignOne.value.end).format('YYYY-MM-DD'),
+        "per_day_price_for_a_person": this.hotelData.per_day_price_for_a_person
       }
       if (!Object.values(data).some(x => x == null || x == '')) {
         this.api.post('bookings', data).subscribe((res: any) => {
