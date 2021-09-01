@@ -1,5 +1,5 @@
 <header>
-    <div class="container pt-2">
+    <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-lg-3 order-lg-0 order-1">
           <img src="./assets/images/logo.jpg" alt="logo" class="logo" routerLink="/">
@@ -8,13 +8,10 @@
           <div class="row mx-0 justify-content-lg-end justify-content-center mb-3">
             <div class="haeder-button cursor-pointer" *ngIf="isAuthenticated" routerLink="/dashboard" routerLinkActive="active">
               
-              <p class="font-open-sans">Welcome! {{currentUser?.firstName}}</p>
-            </div>
-            <div class="haeder-button cursor-pointer" *ngIf="isAuthenticated">
               <figure><span class="material-icons">
-                person_remove
+                person
                 </span></figure>
-              <p class="font-open-sans">Logout</p>
+              <p class="font-open-sans">Welcome! {{currentUser?.firstName}}</p>
             </div>
           </div>
           <div class="row mx-0 justify-content-end">
@@ -57,12 +54,12 @@
   </header>
   
 
-<div class="container user">
+<div class="container user my-3">
     <div class="row">
-        <div class="col-4">
+        <div class="col-md-4">
             <app-sidebar></app-sidebar>
         </div>
-        <div class="col-8">
+        <div class="col-md-8">
             <router-outlet></router-outlet>
         </div>
     </div>
