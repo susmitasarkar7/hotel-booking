@@ -111,6 +111,19 @@
       "stay_start": "2021-11-15T18:30:00.000Z",
       "stay_end": "2021-11-19T18:30:00.000Z",
       "id": 1
+    },
+    {
+      "name": "Grand Miramar",
+      "location": "Mexico",
+      "image": "grandmiramarallluxurysuitesandresidences.jpg",
+      "rooms": 4,
+      "guests": "1",
+      "desc": "Lorem In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
+      "total_price": "$240",
+      "stay_start": "2021-10-16",
+      "stay_end": "2021-10-22",
+      "per_day_price_for_a_person": 10,
+      "id": 2
     }
   ]
 }
