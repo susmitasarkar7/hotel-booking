@@ -4,9 +4,17 @@
       "email": "john@mail.com",
       "password": "12345678",
       "firstName": "John",
-      "lastName": "dasgupta",
+      "lastName": "Doe",
       "address": "ssdfdsfsd",
       "id": 1
+    },
+    {
+      "email": "mike@mail.com",
+      "password": "12345678",
+      "firstName": "Mike",
+      "lastName": "Hussy",
+      "address": "ssdfdsfsd",
+      "id": 2
     }
   ],
   "hotels": [

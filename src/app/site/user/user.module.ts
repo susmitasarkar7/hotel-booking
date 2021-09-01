@@ -7,12 +7,14 @@ import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    UserComponent
+    UserComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

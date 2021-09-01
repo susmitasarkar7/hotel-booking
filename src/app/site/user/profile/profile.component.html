@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Edit Profile</h4>
+        </div>
+        
+        <form [formGroup]="profileForm" class="w-100 my-5">
+            <mat-card>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input matInput type="text" formControlName="firstName">
+                    </mat-form-field>
+                        <mat-error
+                        *ngIf="profileForm.controls.firstName.touched && profileForm.controls.firstName.hasError('required')">
+                        First Name is required
+                        </mat-error>
+                </div>
+
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput type="text" formControlName="lastName">
+                    </mat-form-field>
+                        <mat-error
+                        *ngIf="profileForm.controls.lastName.touched && profileForm.controls.lastName.hasError('required')">
+                        Last Name is required
+                        </mat-error>
+                </div>
+
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="email">
+                    </mat-form-field>
+                        <mat-error
+                        *ngIf="profileForm.controls.email.touched && profileForm.controls.email.hasError('required')">
+                        Email is required
+                        </mat-error>
+                        <mat-error
+                        *ngIf="profileForm.controls.email.touched && profileForm.controls.email.hasError('pattern')">
+                        Please enter a valid email
+                        </mat-error>
+                </div>
+                
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" formControlName="password">
+                    </mat-form-field>
+                    <mat-error
+                    *ngIf="profileForm.controls.password.touched && profileForm.controls.password.hasError('required')">
+                    Password is required
+                    </mat-error>
+                    <mat-error
+                    *ngIf="profileForm.controls.password.touched && profileForm.controls.password.hasError('minlength')">
+                    Password must be at least 8 characters
+                    </mat-error>
+                </div>
+
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Address</mat-label>
+                        <input matInput type="text" formControlName="address">
+                    </mat-form-field>
+                        <mat-error
+                        *ngIf="profileForm.controls.address.touched && profileForm.controls.address.hasError('required')">
+                        Address is required
+                        </mat-error>
+                </div>
+                
+                <div>
+                    <button mat-raised-button class="mr-2 mb-2" color="primary" (click)="update()">Update</button>
+                </div>
+            </mat-card>
+        </form>
+    </div>
+</div>

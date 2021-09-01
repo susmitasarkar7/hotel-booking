@@ -79,7 +79,6 @@ export class DashboardComponent implements OnInit {
       "stay_start": this.campaignOne.value.start,
       "stay_end": this.campaignOne.value.end,
     }
-    console.log(this.hotel_price);
     
     if (!Object.values(data).some(x => x == null || x == '')) {
       this.api.put(`bookings/${id}`, data).subscribe((res: any) => {
