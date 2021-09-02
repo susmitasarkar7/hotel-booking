@@ -9,13 +9,15 @@ import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     CmsComponent,
-    HotelDetailComponent
+    HotelDetailComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
