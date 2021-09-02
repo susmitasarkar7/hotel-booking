@@ -27,7 +27,8 @@ export class HotelDetailComponent implements OnInit {
       .subscribe(params => {
         this.pageData = params;
       }
-    );   
+    ); 
+    
 
     this.campaignOne = new FormGroup({
       start: new FormControl(new Date( Number(moment(this.pageData.start_date).format('YYYY')),  Number(moment(this.pageData.start_date).format('MM')), Number(moment(this.pageData.start_date).format('DD')))),
@@ -35,8 +36,8 @@ export class HotelDetailComponent implements OnInit {
     });
 
     this.searchHotelForm = new FormGroup({
-      guests: new FormControl(this.pageData.guests, [Validators.required]),
-      rooms: new FormControl(this.pageData.rooms, [Validators.required]),
+      guests: new FormControl('', [Validators.required]),
+      rooms: new FormControl('', [Validators.required]),
     });
   }
 
@@ -49,7 +50,12 @@ export class HotelDetailComponent implements OnInit {
     this.api.get(`hotels`, data).subscribe((res: any) => {
       if (res != '') {
         this.hotelData = res[0];
-        this.hotel_price = '$' + Math.round(this.pageData.stay * this.pageData.guests * this.pageData.rooms * this.hotelData.per_day_price_for_a_person);
+        
+        this.searchHotelForm = new FormGroup({
+          guests: new FormControl(this.hotelData.guests, [Validators.required]),
+          rooms: new FormControl(this.hotelData.rooms, [Validators.required]),
+        });
+        this.hotel_price = '$' + Math.round(this.pageData.stay * this.hotelData.guests * this.hotelData.rooms * this.hotelData.per_day_price_for_a_person);
       } else {
         console.warn(res.message, 'warning');
       }

@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   campaignOne: FormGroup;
   hotelList: [] | any;
   searchHotelForm: FormGroup | any;
+  paginate: any;
 
   constructor(private api: ApiService, public router: Router,
     private toastr: ToastrService) {
@@ -34,7 +35,7 @@ export class HomeComponent implements OnInit {
   } 
 
   ngOnInit(): void {
-    this.getContent();
+    this.viewAll('short');
   }
 
   searchHotels() {
@@ -61,25 +62,16 @@ export class HomeComponent implements OnInit {
 
   }
 
-  getContent(): void {
-    const paginate: any = {
-      _page: 1,
-      _limit: 4
-    }
-
-    this.api.get(`hotels`, paginate).subscribe((res: any) => {
-      if (res != []) {
-        this.hotelList = res;
-      } else {
-        console.warn(res.message, 'warning');
+  viewAll(list: string) {
+    if(list === 'long') {
+      this.paginate = {}
+    } else if (list === 'short') {
+      this.paginate = {
+        _page: 1,
+        _limit: 4
       }
-    }, (err: any) => {
-      console.log(err);
-    });
-  }
-
-  viewAll() {
-    this.api.get(`hotels`).subscribe((res: any) => {
+    }
+    this.api.get(`hotels`, this.paginate).subscribe((res: any) => {
       if (res != []) {
         this.hotelList = res;
       } else {
@@ -100,8 +92,6 @@ export class HomeComponent implements OnInit {
         { 
           id, 
           stay, 
-          guests: this.searchHotelForm.value.guests, 
-          rooms: this.searchHotelForm.value.rooms,
           start_date : this.campaignOne.value.start,
           end_date : this.campaignOne.value.end,
         }

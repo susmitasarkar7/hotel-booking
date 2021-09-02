@@ -33,8 +33,6 @@ export class ApiService {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
           Accept: 'multipart/form-data',
-          'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com',
-          'x-rapidapi-key': 'undefined'
         })
       };
     } else {
