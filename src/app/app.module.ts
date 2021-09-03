@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServiceModule } from './services/service.module';
 import { ToastrModule } from 'ngx-toastr';
+import { GlobalInterceptor } from './services/global.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot()
   ],
   providers: [
-    ServiceModule
+    ServiceModule,
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true  }
   ],
   bootstrap: [AppComponent]
 })

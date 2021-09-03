@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
     
 
     if (!Object.values(params).some(x => x == null || x == '')) {
-      this.api.get(`hotels`, params).subscribe((res: any) => {
+      this.api.get(`hotels1`, params).subscribe((res: any) => {
         if (res.length!=0) {
           this.hotelList = res;
         } else {
