@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import * as moment from 'moment';
+import { hotelListModel } from 'src/app/dataModels/hotelList.model';
 
 @Component({
   selector: 'app-hotel-detail',
@@ -12,11 +13,11 @@ import * as moment from 'moment';
 })
 export class HotelDetailComponent implements OnInit {
   hotelData: any;
-  hotel_price: any;
+  hotel_price: Number | undefined;
   pageData: any;
   campaignOne: FormGroup;
-  hotelList: [] | any;
-  searchHotelForm: FormGroup | any;
+  hotelList: hotelListModel[] = [];
+  searchHotelForm: FormGroup;
 
   constructor(private api: ApiService,
     private toastr: ToastrService,
@@ -55,7 +56,7 @@ export class HotelDetailComponent implements OnInit {
           guests: new FormControl(this.hotelData.guests, [Validators.required]),
           rooms: new FormControl(this.hotelData.rooms, [Validators.required]),
         });
-        this.hotel_price = '$' + Math.round(this.pageData.stay * this.hotelData.guests * this.hotelData.rooms * this.hotelData.per_day_price_for_a_person);
+        this.hotel_price = Math.round(this.pageData.stay * this.hotelData.guests * this.hotelData.rooms * this.hotelData.per_day_price_for_a_person);
       } else {
         console.warn(res.message, 'warning');
       }
@@ -103,6 +104,6 @@ export class HotelDetailComponent implements OnInit {
     var b = moment(this.campaignOne.value.end, "YYYY-MM-DD");
     let stay: any = moment.duration(b.diff(a)).asDays();  
 
-    this.hotel_price = '$' + Math.round(stay * this.searchHotelForm.value.guests * this.searchHotelForm.value.rooms * this.hotelData.per_day_price_for_a_person);
+    this.hotel_price = Math.round(stay * this.searchHotelForm.value.guests * this.searchHotelForm.value.rooms * this.hotelData.per_day_price_for_a_person);
   }
 }

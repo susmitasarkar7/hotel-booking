@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { hotelListModel } from 'src/app/dataModels/hotelList.model';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HomeComponent implements OnInit {
   campaignOne: FormGroup;
-  hotelList: [] | any;
-  searchHotelForm: FormGroup | any;
+  hotelList: hotelListModel[] = [];
+  searchHotelForm: FormGroup;
   paginate: any;
 
   constructor(private api: ApiService, public router: Router,
@@ -71,6 +72,7 @@ export class HomeComponent implements OnInit {
         _limit: 4
       }
     }
+    console.log(typeof(this.paginate));
     this.api.get(`hotels`, this.paginate).subscribe((res: any) => {
       if (res != []) {
         this.hotelList = res;
